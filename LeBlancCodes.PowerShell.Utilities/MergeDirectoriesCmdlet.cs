@@ -1,10 +1,11 @@
 ﻿using System.IO;
 using System.Management.Automation;
+using LeBlancCodes.PowerShell.Utilities.Internal;
 
 namespace LeBlancCodes.PowerShell.Utilities
 {
     [Cmdlet(VerbsData.Merge, "Directories", ConfirmImpact = ConfirmImpact.High, SupportsShouldProcess = true)]
-    [OutputType(typeof(FileInfo), ParameterSetName = new []{"PassThru"})]
+    [OutputType(typeof(FileInfo), ParameterSetName = new[] {"PassThru"})]
     public class MergeDirectoriesCmdlet : Cmdlet
     {
         [Parameter(Position = 0, Mandatory = true, ValueFromPipeline = true)]
@@ -52,8 +53,6 @@ namespace LeBlancCodes.PowerShell.Utilities
                 WriteError(new ErrorRecord(exp, nameof(IOException), ErrorCategory.InvalidOperation, SourceDirectory));
             }
         }
-
-
 
         private bool CreateDirectory(string directory)
         {

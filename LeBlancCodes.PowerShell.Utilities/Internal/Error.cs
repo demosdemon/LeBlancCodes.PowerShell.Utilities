@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Management.Automation;
 
-namespace LeBlancCodes.PowerShell.Utilities
+namespace LeBlancCodes.PowerShell.Utilities.Internal
 {
     internal static class Error
     {
