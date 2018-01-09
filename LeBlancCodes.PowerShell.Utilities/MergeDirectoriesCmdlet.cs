@@ -1,30 +1,54 @@
-﻿using System.IO;
+using System.IO;
 using System.Management.Automation;
+using JetBrains.Annotations;
 using LeBlancCodes.PowerShell.Utilities.Internal;
 
 namespace LeBlancCodes.PowerShell.Utilities
 {
+    /// <summary>
+    ///     Merge-Directories Cmdlet
+    ///     Merges <see cref="SourceDirectory" /> into <see cref="DestinationDirectory" />
+    /// </summary>
     [Cmdlet(VerbsData.Merge, "Directories", ConfirmImpact = ConfirmImpact.High, SupportsShouldProcess = true)]
     [OutputType(typeof(FileInfo), ParameterSetName = new[] {"PassThru"})]
+    [PublicAPI]
     public class MergeDirectoriesCmdlet : Cmdlet
     {
+        /// <summary>
+        ///     The source directory
+        /// </summary>
         [Parameter(Position = 0, Mandatory = true, ValueFromPipeline = true)]
         [Alias("Input", "Source", "Path", "PSPath")]
         public string SourceDirectory { get; set; }
 
+        /// <summary>
+        ///     The output directory
+        /// </summary>
         [Parameter(Position = 1, Mandatory = true)]
         [Alias("Output", "Dest")]
         public string DestinationDirectory { get; set; }
 
+        /// <summary>
+        ///     Normally, `Merge-Directories` does not generate any output. Specify <see cref="PassThru" /> to generate
+        ///     <see cref="FileInfo" /> objects for each file.
+        /// </summary>
         [Parameter(ParameterSetName = "PassThru")]
         public SwitchParameter PassThru { get; set; }
 
+        /// <summary>
+        ///     Specify <see cref="DeleteSource" /> to delete the source directory after merging the files.
+        /// </summary>
         [Parameter]
         public SwitchParameter DeleteSource { get; set; }
 
+        /// <summary>
+        ///     Normally, `Merge-Directories` performs a depth-first traversal through the <see cref="SourceDirectory" />. Specify
+        ///     <see cref="BreadthFirst" /> to indicate a breadth-first traversal instead.
+        /// </summary>
         [Parameter(HelpMessage = "Merge-Directories defaults to depth-first traversal, specify BreadthFirst for a as-named traversal instead.")]
         public SwitchParameter BreadthFirst { get; set; }
 
+        /// <inheritdoc />
         protected override void BeginProcessing()
         {
             base.BeginProcessing();
@@ -32,6 +56,7 @@ namespace LeBlancCodes.PowerShell.Utilities
             CreateDirectory(DestinationDirectory);
         }
 
+        /// <inheritdoc />
         protected override void ProcessRecord()
         {
             base.ProcessRecord();

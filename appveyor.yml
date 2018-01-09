@@ -42,4 +42,4 @@ after_build:
 
     $repo = "https://github.com/$env:APPVEYOR_REPO_NAME"
     $license = "$repo/blob/master/LICENSE"
-    Publish-Module -Repository $env:MyGetFeed -Name $manifest -NuGetApiKey $env:MyGetApiKey -LicenseUri $license -ProjectUri $repo -Tags PSModule
+    Publish-Module -Repository $env:MyGetFeed -Name $manifest -NuGetApiKey $env:MyGetApiKey

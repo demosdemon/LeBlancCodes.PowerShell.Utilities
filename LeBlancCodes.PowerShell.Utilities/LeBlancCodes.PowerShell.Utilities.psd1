@@ -23,7 +23,7 @@
   
   PrivateData = @{
     PSData = @{
-      Tags = @('Utilities')
+      Tags = @('Utilities', 'PSModule')
       LicenseUri = 'https://github.com/demosdemon/LeBlancCodes.PowerShell.Utilities/blob/master/LICENSE'
       ProjectUri = 'https://github.com/demosdemon/LeBlancCodes.PowerShell.Utilities'
       ReleaseNotes = 'Initial Release'
