@@ -5,12 +5,13 @@ assembly_info:
   file: SharedAssemblyInfo.cs
   assembly_version: '{version}'
   assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
 platform: Any CPU
 configuration: Release
 build:
   parallel: true
-  project: LeBlancCodes.PowerShell.Utilities.sln
   publish_nuget: true
+  publish_nuget_symbols: true
   verbosity: normal
 before_build:
 - cmd: nuget restore
