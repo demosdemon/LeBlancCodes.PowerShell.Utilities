@@ -1,0 +1,20 @@
+version: '1.0.0.{build}'
+image: Visual Studio 2017
+assembly_info:
+  patch: true
+  file: SharedAssemblyInfo.cs
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+platform: Any CPU
+configuration: Release
+build:
+  parallel: true
+  project: LeBlancCodes.PowerShell.Utilities.sln
+  verbosity: normal
+deploy:
+  provider: NuGet
+  server: https://www.myget.org/F/leblanc-codes/api/v2
+  api_key:
+    secure: CizkYUzHx4OrHIvpn8X78CkFmfdm0fdjobqoaWD90V2thHbvlrHcghwSsxGZ4/Zw
+  skip_symbols: true
+  artifact: /.*\.nupkg/

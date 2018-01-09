@@ -49,10 +49,15 @@
   <ItemGroup>
     <Compile Include="Internal\Error.cs" />
     <Compile Include="MergeDirectoriesCmdlet.cs" />
+    <Compile Include="..\SharedAssemblyInfo.cs" Link="Properties\SharedAssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Properties\LeBlancCodes.PowerShell.Utilities.psd1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\LeBlancCodes.PowerShell.Utilities.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
