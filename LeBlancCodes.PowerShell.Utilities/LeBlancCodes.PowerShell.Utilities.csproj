@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Internal\Error.cs" />
-    <Compile Include="MergeDirectoriesCmdlet.cs" />
+    <Compile Include="Commands\MergeDirectoriesCmdlet.cs" />
     <Compile Include="..\SharedAssemblyInfo.cs" Link="Properties\SharedAssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

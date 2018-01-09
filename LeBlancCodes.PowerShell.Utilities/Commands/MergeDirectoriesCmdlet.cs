@@ -3,7 +3,7 @@ using System.Management.Automation;
 using JetBrains.Annotations;
 using LeBlancCodes.PowerShell.Utilities.Internal;
 
-namespace LeBlancCodes.PowerShell.Utilities
+namespace LeBlancCodes.PowerShell.Utilities.Commands
 {
     /// <summary>
     ///     Merge-Directories Cmdlet
