@@ -1,8 +1,10 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("LeBlancCodes.PowerShell.Utilities")]
+// General Information about an assembly is controlled through the following
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+[assembly: AssemblyTitle("LeBlancCodes.PowerShell.Utilities.Tests")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
@@ -10,10 +12,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8a29f008-3d69-4330-a79d-a6d242d6c08f")]
-
-#if DEBUG
-[assembly: InternalsVisibleTo("LeBlancCodes.PowerShell.Utilities.Tests")]
-#else
-// TODO: sign binaries, add strong named reference
-#endif
+[assembly: Guid("161e4490-198b-47f8-a190-c5f40d6d5c36")]

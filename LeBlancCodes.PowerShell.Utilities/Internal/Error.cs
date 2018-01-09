@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Management.Automation;
@@ -10,7 +10,8 @@ namespace LeBlancCodes.PowerShell.Utilities.Internal
         [DebuggerStepThrough]
         public static ErrorRecord DirectoryNotFound(string directory, string message = null)
         {
-            if (string.IsNullOrWhiteSpace(directory))
+            // string.Empty is allowed
+            if (directory == null)
                 throw new ArgumentNullException(nameof(directory));
 
             if (string.IsNullOrWhiteSpace(message))

@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
@@ -13,7 +13,7 @@
 [assembly: AssemblyProduct("LeBlancCodes.PowerShell.Utilities")]
 [assembly: AssemblyCopyright("Copyright © LeBlanc Codes, LLC 2018")]
 [assembly: AssemblyTrademark("LeBlancCodes.PowerShell.Utilities")]
-[assembly: AssemblyCulture("en-US")]
+[assembly: AssemblyCulture("")]
 
 // Version information for an assembly consists of the following four values:
 //
