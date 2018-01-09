@@ -1,11 +1,11 @@
-version: '1.0.0.{build}'
+version: '1.0.{build}.0'
 image: Visual Studio 2017
 assembly_info:
   patch: true
   file: SharedAssemblyInfo.cs
   assembly_version: '{version}'
   assembly_file_version: '{version}'
-  assembly_informational_version: '{version}'
+  assembly_informational_version: '{version}-{branch}'
 platform: Any CPU
 configuration: Release
 environment:
@@ -16,7 +16,7 @@ build:
   parallel: true
 before_build:
 - cmd: nuget restore
-after_build:
+on_success:
 - ps: |
     if ($env:APPVEYOR_REPO_BRANCH -ne 'master' -or -not [string]::IsNullOrWhiteSpace($env:APPVEYOR_PULL_REQUEST_NUMBER))
     {
