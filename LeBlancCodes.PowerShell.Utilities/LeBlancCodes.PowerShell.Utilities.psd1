@@ -15,10 +15,10 @@
   Copyright = 'Copyright (C) 2018 LeBlanc Codes, LLC'
   Description = 'A collection of PowerShell utilities.'
   PowerShellVersion = '4.0'
-  DotNetFrameworkVersion = '4.6.2'
   RequiredAssemblies = @('Newtonsoft.Json.dll')
   CmdletsToExport = @(
-    'Merge-Directories'
+    'Merge-Directories',
+    'New-SqlConnectionString'
   )
   
   PrivateData = @{
