@@ -20,5 +20,5 @@ deploy:
   server: https://www.myget.org/F/leblanc-codes/api/v2
   api_key:
     secure: CizkYUzHx4OrHIvpn8X78CkFmfdm0fdjobqoaWD90V2thHbvlrHcghwSsxGZ4/Zw
-  skip_symbols: true
+  symbol_server: https://www.myget.org/F/leblanc-codes/symbols/api/v2
   artifact: /.*\.nupkg/

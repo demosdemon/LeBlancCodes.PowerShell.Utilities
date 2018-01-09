@@ -12,3 +12,6 @@ tab_width = 4
 
 [*.{yaml,yml,js,json,cson,css,less,xml,nuspec}]
 indent_size = 2
+
+[packages.config]
+indent_size = 2

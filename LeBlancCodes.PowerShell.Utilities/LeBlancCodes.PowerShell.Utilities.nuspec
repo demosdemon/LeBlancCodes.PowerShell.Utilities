@@ -10,12 +10,14 @@
     <projectUrl>https://github.com/demosdemon/LeBlancCodes.PowerShell.Utilities</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <releaseNotes>$releaseNotes$</releaseNotes>
     <copyright>Copyright (C) 2018 LeBlanc Codes, LLC</copyright>
     <tags>PowerShell Utilities PSModule</tags>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="10.0.3" />
-      <dependency id="Microsoft.PowerShell.4.ReferenceAssemblies" version="1.0.0" include="compile" />
+      <group targetFramework="net462"></group>
     </dependencies>
   </metadata>
+  <files>
+    <file src="bin\$configuration$\Newtonsoft.Json.dll" target="lib\net462" />
+  </files>
 </package>
