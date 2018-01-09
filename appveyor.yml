@@ -8,17 +8,37 @@ assembly_info:
   assembly_informational_version: '{version}'
 platform: Any CPU
 configuration: Release
+environment:
+  MyGetApiKey:
+    secure: CizkYUzHx4OrHIvpn8X78CkFmfdm0fdjobqoaWD90V2thHbvlrHcghwSsxGZ4/Zw
+  MyGetFeed: leblanc-codes
 build:
   parallel: true
-  publish_nuget: true
-  publish_nuget_symbols: true
-  verbosity: normal
 before_build:
 - cmd: nuget restore
-deploy:
-  provider: NuGet
-  server: https://www.myget.org/F/leblanc-codes/api/v2
-  api_key:
-    secure: CizkYUzHx4OrHIvpn8X78CkFmfdm0fdjobqoaWD90V2thHbvlrHcghwSsxGZ4/Zw
-  skip_symbols: true
-  artifact: /.*\.nupkg/
+after_build:
+- ps: |
+    if ($env:APPVEYOR_REPO_BRANCH -ne 'master' -or -not [string]::IsNullOrWhiteSpace($env:APPVEYOR_PULL_REQUEST_NUMBER))
+    {
+      Exit 0
+    }
+
+    $output = "$env:APPVEYOR_BUILD_FOLDER\LeBlancCodes.PowerShell.Utilities\bin\$env:CONFIGURATION"
+    $manifest = Join-Path $output "LeBlancCodes.PowerShell.Utilities.psd1"
+    if (-not (Test-Path $manifest))
+    {
+      Write-Error "Missing Manifest"
+      Exit 1
+    }
+
+    $repo = Get-PSRepository -Name $env:MyGetFeed -ErrorAction SilentlyContinue
+    if ($repo -eq $null)
+    {
+      $SourceLocation = 'https://www.myget.org/F/{0}/api/v2' -f $env:MyGetFeed
+      $PublishLocation = '{0}/package' -f $SourceLocation
+      Register-PSRepository -Name $env:MyGetFeed -SourceLocation $SourceLocation -PublishLocation $PublishLocation 
+    }
+
+    $repo = "https://github.com/$env:APPVEYOR_REPO_NAME"
+    $license = "$repo/blob/master/LICENSE"
+    Publish-Module -Repository $env:MyGetFeed -Name $manifest -NuGetApiKey $env:MyGetApiKey -FormatVersion $env:APPVEYOR_BUILD_VERSION -LicenseUri $license -ProjectUri $repo -Tags PSModule
