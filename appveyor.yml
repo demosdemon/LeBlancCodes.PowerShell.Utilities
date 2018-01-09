@@ -10,7 +10,10 @@ configuration: Release
 build:
   parallel: true
   project: LeBlancCodes.PowerShell.Utilities.sln
+  publish_nuget: true
   verbosity: normal
+before_build:
+- cmd: nuget restore
 deploy:
   provider: NuGet
   server: https://www.myget.org/F/leblanc-codes/api/v2
