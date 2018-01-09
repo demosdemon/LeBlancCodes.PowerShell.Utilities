@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Properties\LeBlancCodes.PowerShell.Utilities.psd1">
+    <Content Include="LeBlancCodes.PowerShell.Utilities.psd1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="LeBlancCodes.PowerShell.Utilities.nuspec" />
