@@ -12,8 +12,8 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("8a29f008-3d69-4330-a79d-a6d242d6c08f")]
 
-#if DEBUG
+//#if DEBUG
 [assembly: InternalsVisibleTo("LeBlancCodes.PowerShell.Utilities.Tests")]
-#else
+//#else
 // TODO: sign binaries, add strong named reference
-#endif
+//#endif
