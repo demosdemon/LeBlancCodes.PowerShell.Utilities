@@ -51,16 +51,12 @@ namespace LeBlancCodes.PowerShell.Utilities.Commands
         /// <inheritdoc />
         protected override void BeginProcessing()
         {
-            base.BeginProcessing();
-
             CreateDirectory(DestinationDirectory);
         }
 
         /// <inheritdoc />
         protected override void ProcessRecord()
         {
-            base.ProcessRecord();
-
             if (!Directory.Exists(SourceDirectory))
             {
                 WriteError(Error.DirectoryNotFound(SourceDirectory));
