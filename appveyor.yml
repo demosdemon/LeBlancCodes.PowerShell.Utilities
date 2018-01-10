@@ -30,9 +30,9 @@ before_build:
 - cmd: nuget restore
 - cmd: >-
     SonarQube.Scanner.MSBuild.exe begin /k:"%sonarqube-project%"
-      /v:"%APPVEYOR_BUILD_VERSION%-%APPVEYOR_REPO_BRANCH%" /d:sonar.scm.provider=git
-      /d:sonar.organization="%sonarqube-org%" /d:sonar.host.url="%sonarqube-host%"
-      /d:sonar.cs.nunit.reports="TestResult.xml" /d:sonar.login="%sonarqube-token%"
+    /v:"%APPVEYOR_BUILD_VERSION%-%APPVEYOR_REPO_BRANCH%" /d:sonar.scm.provider=git
+    /d:sonar.organization="%sonarqube-org%" /d:sonar.host.url="%sonarqube-host%"
+    /d:sonar.cs.nunit.reports="TestResult.xml" /d:sonar.login="%sonarqube-token%"
 on_finish:
 - cmd: SonarQube.Scanner.MSBuild.exe end /d:sonar.login="%sonarqube-token%"
 on_success:
