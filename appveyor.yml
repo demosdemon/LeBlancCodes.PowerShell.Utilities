@@ -1,5 +1,10 @@
 version: '1.0.{build}'
 image: Visual Studio 2017
+only_commits:
+  files:
+  - src/**
+  - *.sln
+  - appveyor*
 init:
 - cmd: choco install msbuild-sonarqube-runner -y
 assembly_info:
@@ -25,7 +30,7 @@ before_build:
 - cmd: nuget restore
 - cmd: SonarQube.Scanner.MSBuild.exe begin /k:"%sonarqube-project%" /d:sonar.organization="%sonarqube-org%" /d:sonar.host.url="%sonarqube-host%" /d:sonar.login="%sonarqube-token%"
 on_finish:
-- cmd: SonarQube.Scanner.MSBuild.exe end /d:sonar.login="%sonarqube-token%"
+- cmd: SonarQube.Scanner.MSBuild.exe end /d:sonar.login="%sonarqube-token%" /d:sonar.cs.nunit.reports="TestResult.xml"
 on_success:
 - ps: |
     if ($env:APPVEYOR_REPO_BRANCH -eq 'master' -and [string]::IsNullOrWhiteSpace($env:APPVEYOR_PULL_REQUEST_NUMBER))
