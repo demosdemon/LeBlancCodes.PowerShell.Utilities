@@ -15,8 +15,7 @@ environment:
     secure: CizkYUzHx4OrHIvpn8X78CkFmfdm0fdjobqoaWD90V2thHbvlrHcghwSsxGZ4/Zw
   MyGetFeed: leblanc-codes
   sonarqube-token:
-    my_variable:
-      secure: qpjAj1eYFBbNIIajmbwTEmRsGnjpiPdWZ7NsyO9B5fYchJdsZrybY+IAh7eVrGUX
+    secure: qpjAj1eYFBbNIIajmbwTEmRsGnjpiPdWZ7NsyO9B5fYchJdsZrybY+IAh7eVrGUX
   sonarqube-project: LeBlancCodes.PowerShell.Utilities
   sonarqube-org: demosdemon-github
   sonarqube-host: https://sonarcloud.io
