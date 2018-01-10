@@ -1,4 +1,4 @@
-version: '1.0.{build}.0'
+version: '1.0.{build}'
 image: Visual Studio 2017
 assembly_info:
   patch: true
@@ -37,9 +37,10 @@ on_success:
     {
       $SourceLocation = 'https://www.myget.org/F/{0}/api/v2' -f $env:MyGetFeed
       $PublishLocation = '{0}/package' -f $SourceLocation
-      Register-PSRepository -Name $env:MyGetFeed -SourceLocation $SourceLocation -PublishLocation $PublishLocation 
+      Register-PSRepository -Name $env:MyGetFeed -SourceLocation $SourceLocation -PublishLocation $PublishLocation -Verbose
     }
-
-    $repo = "https://github.com/$env:APPVEYOR_REPO_NAME"
-    $license = "$repo/blob/master/LICENSE"
-    Publish-Module -Repository $env:MyGetFeed -Name $manifest -NuGetApiKey $env:MyGetApiKey
+    
+    # These values were previously passed to Publish-Module, but it gives out warnings now and does not use them
+    # $repo = "https://github.com/$env:APPVEYOR_REPO_NAME"
+    # $license = "$repo/blob/master/LICENSE"
+    Publish-Module -Repository $env:MyGetFeed -Name $manifest -NuGetApiKey $env:MyGetApiKey -Verbose
