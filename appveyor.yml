@@ -18,11 +18,8 @@ before_build:
 - cmd: nuget restore
 on_success:
 - ps: |
-    if ($env:APPVEYOR_REPO_BRANCH -ne 'master' -or -not [string]::IsNullOrWhiteSpace($env:APPVEYOR_PULL_REQUEST_NUMBER))
+    if ($env:APPVEYOR_REPO_BRANCH -eq 'master' -and [string]::IsNullOrWhiteSpace($env:APPVEYOR_PULL_REQUEST_NUMBER))
     {
-      Exit 0
-    }
-
     $output = "$env:APPVEYOR_BUILD_FOLDER\LeBlancCodes.PowerShell.Utilities\bin\$env:CONFIGURATION"
     $manifest = Join-Path $output "LeBlancCodes.PowerShell.Utilities.psd1"
     if (-not (Test-Path $manifest))
@@ -44,3 +41,4 @@ on_success:
     # $repo = "https://github.com/$env:APPVEYOR_REPO_NAME"
     # $license = "$repo/blob/master/LICENSE"
     Publish-Module -Repository $env:MyGetFeed -Name $manifest -NuGetApiKey $env:MyGetApiKey -Verbose
+    }
