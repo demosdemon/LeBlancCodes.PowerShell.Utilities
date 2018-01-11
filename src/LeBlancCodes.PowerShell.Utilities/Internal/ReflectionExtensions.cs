@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -40,17 +40,14 @@ namespace LeBlancCodes.PowerShell.Utilities.Internal
             if (!genericInterfaceDefinition.IsInterface || !genericInterfaceDefinition.IsGenericTypeDefinition)
                 throw new ArgumentException($"{type.Name} is not a generic interface definition", nameof(genericInterfaceDefinition));
 
-            if (type.IsInterface)
+            if (type.IsInterface && type.IsGenericType)
             {
-                if (type.IsGenericType)
-                {
-                    var interfaceDefinition = type.GetGenericTypeDefinition();
+                var interfaceDefinition = type.GetGenericTypeDefinition();
 
-                    if (interfaceDefinition == genericInterfaceDefinition)
-                    {
-                        implementingType = type;
-                        return true;
-                    }
+                if (interfaceDefinition == genericInterfaceDefinition)
+                {
+                    implementingType = type;
+                    return true;
                 }
             }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using JetBrains.Annotations;
 using LeBlancCodes.PowerShell.Utilities.Internal;
 using NUnit.Framework;
 
@@ -11,14 +12,19 @@ namespace LeBlancCodes.PowerShell.Utilities.Tests
     {
         private class TestModelA
         {
+            [UsedImplicitly]
             public int IntValue { get; set; }
 
+            [UsedImplicitly]
             public string StringValue { get; set; }
 
+            [UsedImplicitly]
             public Guid ReadOnlyGuid { get; } = Guid.NewGuid();
 
+            [UsedImplicitly]
             public string PrivateRead { private get; set; }
 
+            [UsedImplicitly]
             protected string ProtectedStringValue { get; set; }
         }
 
