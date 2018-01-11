@@ -17,8 +17,10 @@
   PowerShellVersion = '4.0'
   RequiredAssemblies = @('Newtonsoft.Json.dll')
   CmdletsToExport = @(
+    'Invoke-SqlStatement',
     'Merge-Directories',
-    'New-SqlConnectionString'
+    'New-SqlConnectionString',
+    'New-SqlParameter'
   )
   
   PrivateData = @{

@@ -56,13 +56,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\InvokeSqlStatement.cs" />
+    <Compile Include="Commands\InvokeSqlStatementCmdlet.cs" />
     <Compile Include="Commands\NewSqlConnectionStringCmdlet.cs" />
+    <Compile Include="Commands\NewSqlParameterCmdlet.cs" />
+    <Compile Include="Internal\CmdletExtensions.cs" />
+    <Compile Include="Internal\EnumerableExtensions.cs" />
     <Compile Include="Internal\Error.cs" />
     <Compile Include="Commands\MergeDirectoriesCmdlet.cs" />
     <Compile Include="..\..\SharedAssemblyInfo.cs" Link="Properties\SharedAssemblyInfo.cs" />
+    <Compile Include="Internal\PropertyHelper.cs" />
+    <Compile Include="Internal\ReflectionExtensions.cs" />
+    <Compile Include="Models\ResultSetSentinel.cs" />
     <Compile Include="Models\SqlStatementParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Strings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

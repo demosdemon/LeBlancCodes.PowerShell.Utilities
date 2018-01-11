@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
 using JetBrains.Annotations;
 
 namespace LeBlancCodes.PowerShell.Utilities.Models
@@ -11,6 +10,8 @@ namespace LeBlancCodes.PowerShell.Utilities.Models
     [PublicAPI]
     public class SqlStatementParameter
     {
+        private object _value;
+
         /// <summary>
         ///     Default .ctor. Sets the <see cref="DbType" /> to <see cref="SqlDbType.Variant" />.
         /// </summary>
@@ -58,7 +59,11 @@ namespace LeBlancCodes.PowerShell.Utilities.Models
         /// <summary>
         ///     The parameter value
         /// </summary>
-        public object Value { get; set; }
+        public object Value
+        {
+            get => _value = _value ?? DBNull.Value;
+            set => _value = value ?? DBNull.Value;
+        }
 
         /// <summary>
         ///     The parameter type
@@ -80,32 +85,5 @@ namespace LeBlancCodes.PowerShell.Utilities.Models
         ///     Optional, used when <see cref="DbType" /> is set to <see cref="SqlDbType.Decimal" />
         /// </summary>
         public byte? Scale { get; set; }
-
-        internal SqlParameter Apply()
-        {
-            var parameter = new SqlParameter(ParameterName, DbType);
-
-            // ReSharper disable once SwitchStatementMissingSomeCases
-            switch (DbType)
-            {
-                case SqlDbType.VarBinary:
-                case SqlDbType.VarChar:
-                case SqlDbType.NVarChar:
-                case SqlDbType.Char:
-                case SqlDbType.NChar:
-                case SqlDbType.Text:
-                case SqlDbType.NText:
-                    if (Size.HasValue) parameter.Size = Size.Value;
-                    break;
-                case SqlDbType.Decimal:
-                    if (Precision.HasValue) parameter.Precision = Precision.Value;
-                    if (Scale.HasValue) parameter.Scale = Scale.Value;
-                    break;
-            }
-
-            parameter.Value = Value ?? DBNull.Value;
-
-            return parameter;
-        }
     }
 }
