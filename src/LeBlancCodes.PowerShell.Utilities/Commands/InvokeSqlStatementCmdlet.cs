@@ -20,7 +20,7 @@ namespace LeBlancCodes.PowerShell.Utilities.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "SqlStatement")]
     [PublicAPI]
-    public class InvokeSqlStatementCmdlet : Cmdlet, IDisposable
+    public sealed class InvokeSqlStatementCmdlet : Cmdlet, IDisposable
     {
         private bool _dispose;
 
