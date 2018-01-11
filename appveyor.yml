@@ -39,7 +39,7 @@ on_success:
 - ps: |
     if ($env:APPVEYOR_REPO_BRANCH -eq 'master' -and [string]::IsNullOrWhiteSpace($env:APPVEYOR_PULL_REQUEST_NUMBER))
     {
-    $output = "$env:APPVEYOR_BUILD_FOLDER\LeBlancCodes.PowerShell.Utilities\bin\$env:CONFIGURATION"
+    $output = "$env:APPVEYOR_BUILD_FOLDER\src\LeBlancCodes.PowerShell.Utilities\bin\$env:CONFIGURATION"
     $manifest = Join-Path $output "LeBlancCodes.PowerShell.Utilities.psd1"
     if (-not (Test-Path $manifest))
     {
