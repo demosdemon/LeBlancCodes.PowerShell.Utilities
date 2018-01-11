@@ -88,7 +88,7 @@ namespace LeBlancCodes.PowerShell.Utilities.Commands
             }
 
             Command = Database.CreateCommand();
-            Command.CommandText = Statement;
+            Command.CommandText = Statement; // Setting the CommandText unchecked is intentional.
         }
 
         /// <inheritdoc />
