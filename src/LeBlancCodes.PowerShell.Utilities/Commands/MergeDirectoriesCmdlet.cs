@@ -51,16 +51,12 @@ namespace LeBlancCodes.PowerShell.Utilities.Commands
         /// <inheritdoc />
         protected override void BeginProcessing()
         {
-            base.BeginProcessing();
-
             CreateDirectory(DestinationDirectory);
         }
 
         /// <inheritdoc />
         protected override void ProcessRecord()
         {
-            base.ProcessRecord();
-
             if (!Directory.Exists(SourceDirectory))
             {
                 WriteError(Error.DirectoryNotFound(SourceDirectory));
@@ -118,11 +114,7 @@ namespace LeBlancCodes.PowerShell.Utilities.Commands
             var source = Path.Combine(root, subroot, name);
             var dest = Path.Combine(DestinationDirectory, subroot, name);
 
-            if (Directory.Exists(dest))
-            {
-                if (!DeleteDirectory(dest))
-                    return;
-            }
+            if (Directory.Exists(dest) && !DeleteDirectory(dest)) return;
 
             var prompt = false;
 
@@ -133,11 +125,7 @@ namespace LeBlancCodes.PowerShell.Utilities.Commands
                     return;
             }
 
-            if (!prompt)
-            {
-                if (!ShouldProcess(dest, "Copy File"))
-                    return;
-            }
+            if (!prompt && !ShouldProcess(dest, "Copy File")) return;
 
             File.Copy(source, dest, true);
 

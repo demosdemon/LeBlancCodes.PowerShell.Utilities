@@ -1,5 +1,12 @@
 version: '1.0.{build}'
 image: Visual Studio 2017
+only_commits:
+  files:
+  - src/**
+  - '*.sln'
+  - appveyor*
+init:
+- cmd: choco install msbuild-sonarqube-runner -y
 assembly_info:
   patch: true
   file: SharedAssemblyInfo.cs
@@ -12,17 +19,26 @@ environment:
   MyGetApiKey:
     secure: CizkYUzHx4OrHIvpn8X78CkFmfdm0fdjobqoaWD90V2thHbvlrHcghwSsxGZ4/Zw
   MyGetFeed: leblanc-codes
+  sonarqube-token:
+    secure: qpjAj1eYFBbNIIajmbwTEmRsGnjpiPdWZ7NsyO9B5fYchJdsZrybY+IAh7eVrGUX
+  sonarqube-project: LeBlancCodes.PowerShell.Utilities
+  sonarqube-org: demosdemon-github
+  sonarqube-host: https://sonarcloud.io
 build:
   parallel: true
 before_build:
 - cmd: nuget restore
+- cmd: >-
+    SonarQube.Scanner.MSBuild.exe begin /k:"%sonarqube-project%"
+    /v:"%APPVEYOR_BUILD_VERSION%-%APPVEYOR_REPO_BRANCH%" /d:sonar.scm.provider=git
+    /d:sonar.organization="%sonarqube-org%" /d:sonar.host.url="%sonarqube-host%"
+    /d:sonar.cs.nunit.reports="TestResult.xml" /d:sonar.login="%sonarqube-token%"
+on_finish:
+- cmd: SonarQube.Scanner.MSBuild.exe end /d:sonar.login="%sonarqube-token%"
 on_success:
 - ps: |
-    if ($env:APPVEYOR_REPO_BRANCH -ne 'master' -or -not [string]::IsNullOrWhiteSpace($env:APPVEYOR_PULL_REQUEST_NUMBER))
+    if ($env:APPVEYOR_REPO_BRANCH -eq 'master' -and [string]::IsNullOrWhiteSpace($env:APPVEYOR_PULL_REQUEST_NUMBER))
     {
-      Exit 0
-    }
-
     $output = "$env:APPVEYOR_BUILD_FOLDER\LeBlancCodes.PowerShell.Utilities\bin\$env:CONFIGURATION"
     $manifest = Join-Path $output "LeBlancCodes.PowerShell.Utilities.psd1"
     if (-not (Test-Path $manifest))
@@ -39,8 +55,9 @@ on_success:
       $PublishLocation = '{0}/package' -f $SourceLocation
       Register-PSRepository -Name $env:MyGetFeed -SourceLocation $SourceLocation -PublishLocation $PublishLocation -Verbose
     }
-    
+
     # These values were previously passed to Publish-Module, but it gives out warnings now and does not use them
     # $repo = "https://github.com/$env:APPVEYOR_REPO_NAME"
     # $license = "$repo/blob/master/LICENSE"
     Publish-Module -Repository $env:MyGetFeed -Name $manifest -NuGetApiKey $env:MyGetApiKey -Verbose
+    }

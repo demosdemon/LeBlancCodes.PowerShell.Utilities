@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeBlancCodes.PowerShell.Utilities", "LeBlancCodes.PowerShell.Utilities\LeBlancCodes.PowerShell.Utilities.csproj", "{8A29F008-3D69-4330-A79D-A6D242D6C08F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeBlancCodes.PowerShell.Utilities", "src\LeBlancCodes.PowerShell.Utilities\LeBlancCodes.PowerShell.Utilities.csproj", "{8A29F008-3D69-4330-A79D-A6D242D6C08F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4B7BC6AF-9531-44BD-ADE0-62D5B81F8D4E}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeBlancCodes.PowerShell.Utilities.Tests", "LeBlancCodes.PowerShell.Utilities.Tests\LeBlancCodes.PowerShell.Utilities.Tests.csproj", "{161E4490-198B-47F8-A190-C5F40D6D5C36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeBlancCodes.PowerShell.Utilities.Tests", "src\LeBlancCodes.PowerShell.Utilities.Tests\LeBlancCodes.PowerShell.Utilities.Tests.csproj", "{161E4490-198B-47F8-A190-C5F40D6D5C36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

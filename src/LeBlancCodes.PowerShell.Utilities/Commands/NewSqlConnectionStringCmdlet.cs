@@ -114,8 +114,6 @@ namespace LeBlancCodes.PowerShell.Utilities.Commands
         /// <inheritdoc />
         protected override void ProcessRecord()
         {
-            base.ProcessRecord();
-
             var csBuilder = new SqlConnectionStringBuilder
             {
                 DataSource = DataSource,
